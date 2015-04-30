@@ -16,7 +16,7 @@
                         <span class="badge"><?php echo $category['count'];?></span>
 
                         <a href="<?php echo DX_URL . "posts/index?category=" . strtolower($category['name']);?>">
-                                <?php echo $category['name'];?>
+                                <?php echo htmlentities($category['name'], ENT_QUOTES);?>
                             </a>
                         </dd>
                     <?php endforeach;?>
@@ -35,7 +35,7 @@
                             <span class="badge"><?php echo $tag['occurances'];?></span>
                             <a href="<?php echo DX_URL . "posts/index?tag=" . strtolower($tag['name']);?>">
                         <span>
-                            <?php echo $tag['name'];?>
+                            <?php echo htmlentities($tag['name'], ENT_QUOTES);?>
                         </span>
                                 </a>
                         </dd>
@@ -60,7 +60,7 @@
                             <?php foreach( $item['posts'] as $post ): ?>
                                 <li>
                                     <a href="<?php echo DX_URL . "posts/view/" . $post['id'];?>">
-                                        <?php echo $post['title']; ?>
+                                        <?php echo htmlentities($post['title'], ENT_QUOTES); ?>
                                     </a>
                                 </li>
                             <?php endforeach;?>

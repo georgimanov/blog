@@ -16,4 +16,10 @@
         </form>
         <p class="text-center"><a href="<?php echo DX_URL . "user/login";?>">Login</a> </p>
     </div>
+
+    <div class="row">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" class="justifycenter"><?php echo ( (! empty ($message)) ? $message : "");?>&times;</span>
+        </button>
+    </div>
 </div>

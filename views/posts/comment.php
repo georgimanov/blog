@@ -11,7 +11,7 @@
                 <form role="form" method="post" action="<?php echo DX_URL . 'comments/add'; ?>">
                     <div class="form-group">
                         <input name="name" type="name"
-                            <?php echo ( empty($this->logged_user['username']) ? "" : 'value=' .$this->logged_user['username']);?>
+                            <?php echo ( empty($this->logged_user['username']) ? "" : 'value=' . htmlspecialchars( $this->logged_user['username']));?>
                                class="form-control" id="NameInputEmail1" placeholder="Your Name" required="required">
                         <br>
                     </div>

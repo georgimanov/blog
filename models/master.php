@@ -95,6 +95,9 @@ class Master_Model {
             $query .= " LIMIT $limit";
         }
 
+        var_dump($query);
+        die;
+
         $result_set = $this->db->query( $query );
 
         $results = $this->process_results( $result_set );
