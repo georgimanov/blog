@@ -20,7 +20,7 @@ class Auth {
 				'username' => $_SESSION['username']					
 			);
 
-            if( ! empty ($_SESSION['admin'])){
+            if( ! empty( $_SESSION['is_admin'] ) &&  $_SESSION['is_admin'] == 1 ) {
                 self::$is_admin = true;
             }
 		}
@@ -44,8 +44,7 @@ class Auth {
 		return self::$logged_user;
 	}
 
-
-    public function is_admin_in () {
+    public function is_admin () {
         return self::$is_admin;
     }
 	
@@ -53,21 +52,23 @@ class Auth {
 		$db_object = \Lib\Database::get_instance();
 		$db = $db_object->get_db();
 		
-		$statement = $db->prepare(
-			"SELECT id, username FROM users WHERE username = ? "
-				. "AND password =  ?  LIMIT 1"
+		$statement = $db->prepare("SELECT id, username, is_admin
+                FROM users AS u
+            WHERE username = ? "
+				. "AND password = md5(?)  LIMIT 1"
 		);
-		
+
 		$statement->bind_param( 'ss', $username, $password );
-		
+
 		$statement->execute();
 		
-		$result_set = $statement->get_result(); 
-		
+		$result_set = $statement->get_result();
+
 		if( $row = $result_set->fetch_assoc() ) {
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['user_id'] = $row['id'];
-			
+            $_SESSION['is_admin'] = $row['is_admin'];
+
 			return true;
 		}
 		

@@ -10,7 +10,9 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <form role="form" method="post" action="<?php echo DX_URL . 'comments/add'; ?>">
                     <div class="form-group">
-                        <input name="name" type="name" class="form-control" id="NameInputEmail1" placeholder="Your Name" required="required">
+                        <input name="name" type="name"
+                            <?php echo ( empty($this->logged_user['username']) ? "" : 'value=' .$this->logged_user['username']);?>
+                               class="form-control" id="NameInputEmail1" placeholder="Your Name" required="required">
                         <br>
                     </div>
                     <div class="form-group">

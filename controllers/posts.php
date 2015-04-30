@@ -57,7 +57,8 @@ class Posts_Controller extends Master_Controller {
 
     public function add( ) {
         $auth = \Lib\Auth::get_instance();
-        if(! $auth->is_logged_in() ){
+
+        if( !  $auth->is_admin() ) {
             header("Location: ". DX_URL. "posts/index");
             exit;
         }

@@ -29,10 +29,31 @@ class User_Controller extends Master_Controller {
 	}
 
     public function register() {
+        if( ! empty( $_POST['username'] ) && ! empty( $_POST['password'] ) ) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
-        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+            $auth = \Lib\Auth::get_instance();
+            if($auth->is_logged_in() ){
+                header("Location: ". DX_URL. "posts/index");
+                exit;
+            } else {
 
-        include_once $this->layout;
+                $new_user = array(
+                    'username' => $username,
+                    'password' => md5($password)
+                );
+
+                $user = $this->model->add($new_user);
+
+                header("Location: ". DX_URL. "user/login");
+                exit;
+            }
+        } else {
+            $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+            include_once $this->layout;
+        }
     }
 
     public function profile($id) {
