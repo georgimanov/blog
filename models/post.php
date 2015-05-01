@@ -74,6 +74,44 @@ class Post_Model extends Master_Model {
         return $this->db->affected_rows;
     }
 
+    public function update_post ( $post, $tags_string ) {
+
+        $added_post_id = $this->update($post);
+
+        if ( count($tags_string) > null ){
+            $tags_names = explode(',', $tags_string);
+
+            $tag_model = new \Models\Tag_Model();
+            $posts_have_tag_model = new \Models\Poststags_Model();
+
+
+            foreach($tags_names as $tag_name){
+
+                $tag_name = trim($tag_name);
+
+                if( ! empty ($tag_name) ){
+
+                    $tag_exists = $tag_model->get_by_name ( $tag_name );
+
+                    $tag_id = 0;
+                    if( empty ($tag_exists) ) {
+                        $tag_element = array(
+                            'name' => $tag_name
+                        );
+
+                        $tag_id = $tag_model->add($tag_element);
+                    } else {
+                        $tag_id = $tag_exists[0]['id'];
+                    }
+
+                    $posts_have_tag_model->add_relation($added_post_id, $tag_id);
+                }
+            }
+        }
+
+        return $this->db->affected_rows;
+    }
+
     public function delete ( $id ) {
         $tags = $this->get_tags_by_post_id( $id );
 

@@ -4,6 +4,9 @@
     <div class="row mt">
         <div class="col-lg-6 col-lg-offset-3 centered">
             <h3>Edit post</h3>
+            <i class="alert-info">
+                <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+            </i>
             <hr>
         </div>
     </div>
@@ -11,13 +14,13 @@
     <div class="row mt">
         <div class="col-lg-8 col-lg-offset-2">
             <form role="form" method="post">
+                <input type="hidden" name="id" value="<?php echo $post['id'];?>">
                 <div class="form-group">
                     <input name="title" value="<?php echo $post['title'];?>" class="form-control" placeholder="Title" required="required">
                     <br>
                 </div>
                 <div class="form-group">
-                Date published: <?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($post['date_pubslished']));?><br/>
-                Set new date: <input type="datetime-local" name="date_pubslished" value=" <?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($post['date_pubslished']));?>" />
+                    Date published: <input type="text" name="date_pubslished" value=" <?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($post['date_pubslished']));?>" />
                     </div>
                 <div class="form-group">
 

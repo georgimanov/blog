@@ -96,6 +96,7 @@ class Comments_Controller extends Master_Controller {
             $content = $_POST['content'];
             $email = $_POST['email'];
 
+
             $comment = array(
                 'id' => $id,
                 'name' => $name,
@@ -104,6 +105,7 @@ class Comments_Controller extends Master_Controller {
             );
 
             $result = $this->model->update( $comment );
+
 
             if($result > 0){
                 $this->message = 'Successfully edited comment';

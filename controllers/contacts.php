@@ -29,6 +29,17 @@ class Contacts_Controller extends Master_Controller {
             );
 
             $new_contact_entry_id = $this->model->add( $contact );
+
+            if($new_contact_entry_id > 0 ){
+                $to      = $email;
+                $subject = 'RE: on your comment at www.gmanov.com';
+                $message = 'Thank you' . $name . ', for your message :)';
+                $headers = 'From: georgimanov@gmail.com' . "\r\n" .
+                    'Reply-To: georgimanov@gmail.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+                mail($to, $subject, $message, $headers);
+            }
         }
 
         $redirect = (__FUNCTION__). '.php';

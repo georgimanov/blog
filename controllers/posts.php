@@ -152,17 +152,19 @@ class Posts_Controller extends Master_Controller {
 
         $categories_list = $this->model->get_all_categories();
 
-        if( ! empty( $_POST['id'] ) && ! empty( $_POST['title'] ) && ! empty( $_POST['category_id'] )  && ! empty( $_POST['content'] ) ) {
+        if( ! empty( $_POST['id'] ) && ! empty( $_POST['title'] ) && ! empty( $_POST['category_id'] )  && ! empty( $_POST['content'] ) && ! empty( $_POST['date_pubslished'] ) ) {
             $id = $_POST['id'];
             $title = $_POST['title'];
             $category_id = $_POST['category_id'];
             $content = $_POST['content'];
+            $date_pubslished = $_POST['date_pubslished'];
 
             $post = array(
                 'id' => $id,
                 'title' => $title,
                 'category_id' => $category_id,
-                'content' => $content
+                'content' => $content,
+                'date_pubslished' => $date_pubslished
             );
 
             $tags = null;
