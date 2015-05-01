@@ -54,6 +54,13 @@ class Contacts_Controller extends Master_Controller {
 
     public function admin()
     {
+        $auth = \Lib\Auth::get_instance();
+
+        if( !  $auth->is_admin() ) {
+            header("Location: ". DX_URL. "posts/index");
+            exit;
+        }
+
         $contacts = $this->model->find();
 
         if( empty( $contacts) ){

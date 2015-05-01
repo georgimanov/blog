@@ -58,7 +58,7 @@
                     print("<br/ >");
                     printf("<a href='%s' style='color: #000' >Categories</a>",DX_URL . "categories/admin");
                     print("<br/ >");
-                    printf("<a href='%s' style='color: #000' >Comments</a>",DX_URL . "comments/admin");
+                    printf("<a href='%s' style='color: #000' >Contacts</a>",DX_URL . "contacts/admin");
 //                    print("<br/ >");
 //                    printf("<a href='%s' style='color: #000' >Tags</a>",DX_URL . "tags/admin");
 //                    print("<br/ >");
