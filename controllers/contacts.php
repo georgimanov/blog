@@ -51,4 +51,17 @@ class Contacts_Controller extends Master_Controller {
 
         include_once $this->layout;
     }
+
+    public function admin()
+    {
+        $contacts = $this->model->find();
+
+        if( empty( $contacts) ){
+            $this->sorry("No contacts were found!");
+            exit;
+        }
+        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+        include_once $this->layout;
+    }
 }
