@@ -72,11 +72,48 @@ class Comments_Controller extends Master_Controller {
 
     public function edit($id)
     {
-        $comments = $this->model->find();
-        if( empty( $comments ) ){
+        $auth = \Lib\Auth::get_instance();
+
+        if( !  $auth->is_admin() ) {
+            header("Location: ". DX_URL. "posts/index");
+            exit;
+        }
+
+        $element = $this->model->get($id);
+
+        if( empty( $element ) ){
             header( 'Location: ' . DX_URL);
             exit;
         }
+
+        if( ! empty( $_POST['id'] ) &&
+            ! empty ($_POST['name']) &&
+            ! empty ($_POST['content']) &&
+            ! empty ($_POST['email']) ) {
+
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $content = $_POST['content'];
+            $email = $_POST['email'];
+
+            $comment = array(
+                'id' => $id,
+                'name' => $name,
+                'content' => $content,
+                'email' => $email
+            );
+
+            $result = $this->model->update( $comment );
+
+            if($result > 0){
+                $this->message = 'Successfully edited comment';
+            } else {
+                $this->message = 'An error has occurred!';
+            }
+
+        }
+
+        $element = $element[0];
 
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 

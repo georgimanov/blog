@@ -43,10 +43,10 @@
                         </td>
 
                         <td>
-                            <a href="<?php echo DX_URL . 'comments/edit/' .$comment['id'];?>" >edit</a>
+                            <a href="<?php echo DX_URL . 'comments/edit/' .$comment['id']; ?>" class="btn btn-warning" >edit</a>
                         </td>
                         <td>
-                            <a href="<?php echo DX_URL . 'comments/delete/' .$comment['id'];?>"" >delete</a>
+                            <a href="<?php echo DX_URL . 'comments/delete/' .$comment['id'];?>" class="btn btn-danger" >delete</a>
                         </td>
                     </tr>
 

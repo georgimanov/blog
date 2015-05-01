@@ -7,6 +7,10 @@
             <div class="col-lg-8 col-lg-offset-2 centered">
                 <h3>Delete Comment <a href="<?php echo DX_URL . 'comments/index';?>" ># back</a> </h3>
             </div>
+
+            <i class="alert-info">
+                <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+            </i>
             <div class="col-lg-8 col-lg-offset-2">
                 <form role="form" method="post">
                     <div class="form-group">

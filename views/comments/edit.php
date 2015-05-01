@@ -1,28 +1,41 @@
-<!-- +++++ Comment Section +++++ -->
+<!-- +++++ Comment Edit Section +++++ -->
 
 <div id="white">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-8 col-lg-offset-2 centered">
-                <h3>Edit Comment</h3>
+                <h3>Edit Comment <a href="<?php echo DX_URL . 'comments/index';?>" ># back</a> </h3>
+            </div>
+            <div class="row">
+                <i class="alert-info">
+                    <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+                </i>
             </div>
             <div class="col-lg-8 col-lg-offset-2">
-                <form role="form" method="post" action="<?php echo DX_URL . 'comments/add'; ?>">
+                <form role="form" method="post">
                     <div class="form-group">
                         <input name="name" type="name"
-                            <?php echo ( empty($this->logged_user['username']) ? "" : 'value=' . htmlspecialchars( $this->logged_user['username']));?>
-                               class="form-control" id="NameInputEmail1" placeholder="Your Name" required="required">
+                               class="form-control"  value="<?php echo htmlentities($element['name']); ?>" id="NameInput" placeholder="Your Name" required="required" >
                         <br>
                     </div>
                     <div class="form-group">
-                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <input name="email" type="email" value="<?php echo htmlentities($element['email']); ?>" class="form-control" id="exampleInputEmail1" placeholder="Enter email" >
                         <br>
                     </div>
-                    <input name="post_id" type="hidden" value="<?php echo $post['id']; ?>"/>
-                    <textarea name="content" class="form-control" rows="6" placeholder="Enter your text here" required="required"></textarea>
+
+                    <div class="form-group">
+                        <details>
+                            <summary>Content</summary>
+                            <p><?php echo htmlentities($element['content']); ?></p>
+                        </details>
+                    </div>
+                    <textarea name="content"  placeholder=" <?php echo htmlentities($element['content']); ?>" class="form-control" rows="6"  required="required" ></textarea>
+
+                    <input name="id" value=" <?php echo $element['id']; ?>" type="hidden">
+
                     <br>
-                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                    <button type="submit" class="btn btn-success">EDIT</button>
                 </form>
             </div>
         </div>

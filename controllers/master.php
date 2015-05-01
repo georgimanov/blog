@@ -33,6 +33,7 @@ class Master_Controller {
 		include_once $this->layout;
 	}
 
+
     public function delete($id)
     {
         $auth = \Lib\Auth::get_instance();

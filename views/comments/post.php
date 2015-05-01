@@ -2,13 +2,13 @@
     <div class="row">
         <h2>List of comments for post:</h2>
         <hr>
-            <div class="container">
-                Id: <?php echo htmlentities($post['id']); ?> <br>
-                Title: <?php echo htmlentities($post['title']); ?> <br>
-                Publiesh: <?php echo htmlentities($post['date_pubslished']); ?> <br>
-                User : <?php echo htmlentities($post['username']) ;?> <br>
-                <a href="<?php echo DX_URL . 'posts/admin';?>" class="text-right">#back </a>
-            </div>
+        <div class="container">
+            Id: <?php echo htmlentities($post['id']); ?> <br>
+            Title: <?php echo htmlentities($post['title']); ?> <br>
+            Publiesh: <?php echo htmlentities($post['date_pubslished']); ?> <br>
+            User : <?php echo htmlentities($post['username']) ;?> <br>
+            <a href="<?php echo DX_URL . 'posts/admin';?>" class="text-right">#back </a>
+        </div>
         <hr>
         <div class="table-responsive">
             <table class="table table-hover">
@@ -52,10 +52,10 @@
                         </td>
 
                         <td>
-                            <a href="<?php echo DX_URL . 'comments/edit/' .$comment['id'];?>" >edit</a>
+                            <a href="<?php echo DX_URL . 'comments/edit/' .$comment['id'];?>" class="btn btn-warning">edit</a>
                         </td>
                         <td>
-                            <a href="<?php echo DX_URL . 'comments/delete/' .$comment['id'];?>"" >delete</a>
+                            <a href="<?php echo DX_URL . 'comments/delete/' .$comment['id'];?>" class="btn btn-danger" >delete</a>
                         </td>
                     </tr>
 
