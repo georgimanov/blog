@@ -189,6 +189,37 @@ class Posts_Controller extends Master_Controller {
 
     public function delete ( $id ){
 
+        $auth = \Lib\Auth::get_instance();
+
+        $error_messages = array();
+
+        if( !  $auth->is_admin() ) {
+            header("Location: ". DX_URL. "posts/index");
+            exit;
+        }
+
+        $post = $this->model->get($id);
+        $post = $post[0];
+        if( empty( $post ) ){
+            $this->sorry("Post was not found!");
+            exit;
+        }
+
+        $display_tags = $this->model->get_tags_by_post_id($id);
+
+        $tags_string = "";
+
+        if( ! empty ($display_tags) ){
+            foreach($display_tags as $current_tag){
+
+                $tags_string .= $current_tag['name'] . ', ' ;
+            }
+
+            $tags_string = rtrim( $tags_string, ', ' );
+        }
+
+        $categories_list = $this->model->get_all_categories();
+
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 
         include_once $this->layout;
