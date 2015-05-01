@@ -22,6 +22,24 @@ class Comments_Controller extends Master_Controller {
         include_once $this->layout;
     }
 
+    public function post($id)
+    {
+        include  DX_ROOT_DIR . '/models/post.php';
+        $post_model = new \Models\Post_Model();
+        $comments = $post_model->get_comments($id);
+
+        if( empty( $comments) ){
+            $this->sorry("No comments were found!");
+            exit;
+        }
+
+        $post = $post_model->get_post($id)[0];
+
+        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+        include_once $this->layout;
+    }
+
     public function add()
     {
         if( ! empty( $_POST['name'] ) && ! empty( $_POST['content'] ) && ! empty ( $_POST['post_id'] ) ) {
@@ -52,20 +70,7 @@ class Comments_Controller extends Master_Controller {
         include_once $this->layout;
     }
 
-    public function update()
-    {
-        $comments = $this->model->find();
-        if( empty( $comments ) ){
-            header( 'Location: ' . DX_URL);
-            exit;
-        }
-
-        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
-
-        include_once $this->layout;
-    }
-
-    public function delete()
+    public function edit($id)
     {
         $comments = $this->model->find();
         if( empty( $comments ) ){

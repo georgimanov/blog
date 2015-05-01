@@ -1,6 +1,13 @@
 <div class="container">
     <div class="row">
-        <h1>List of comments</h1>
+        <h2>List of comments for post:</h2>
+        <hr>
+            <div class="container">
+                Title: <?php echo htmlentities($post['title']); ?> <br>
+                Publiesh: <?php echo htmlentities($post['date_pubslished']); ?> <br>
+                User : <?php echo htmlentities($post['username']) ;?>
+            </div>
+        <hr>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>

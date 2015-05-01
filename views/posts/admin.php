@@ -28,16 +28,16 @@
                             <?php echo $post['id']; ?>
                         </td>
                         <td>
-                            <?php echo $post['username']; ?>
+                            <?php echo htmlentities($post['username']); ?>
                         </td>
                         <td>
                             <?php echo $post['date_pubslished']; ?>
                         </td>
                         <td>
                             <details>
-                                <summary><?php echo $post['title']; ?></summary>
+                                <summary><?php echo htmlentities($post['title']); ?></summary>
                                 <p>
-                                    <?php echo substr($post['content'],0,250) . "..."; ?>
+                                    <?php echo htmlentities(substr($post['content'],0,250)) . "..."; ?>
 
                                 </p>
                             </details>
@@ -47,15 +47,16 @@
                             <?php echo $post['visits_count']; ?>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-info">Comments</a>
+                            <a href="<?php echo DX_URL . 'comments/post/' . $post['id'];?>" class="btn btn-info">Comments</a>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-warning">Edit</a>
+                            <a href="<?php echo DX_URL . 'posts/edit/' . $post['id'];?>" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo DX_URL . 'posts/delete/' . $post['id'];?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
+
                 <?php endforeach; ?>
 
                 </tbody>

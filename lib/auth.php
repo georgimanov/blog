@@ -17,11 +17,17 @@ class Auth {
 			
 			self::$logged_user = array(
 				'id' => $_SESSION['user_id'],
-				'username' => $_SESSION['username']					
+				'username' => $_SESSION['username'],
 			);
 
             if( ! empty( $_SESSION['is_admin'] ) &&  $_SESSION['is_admin'] == 1 ) {
                 self::$is_admin = true;
+
+//                self::$logged_user = array(
+//                    'id' => $_SESSION['user_id'],
+//                    'username' => $_SESSION['username'],
+//                    'is_admin' => true,
+//                );
             }
 		}
 	}

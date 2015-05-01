@@ -11,22 +11,25 @@ if($user['username'] === 'georgi'){
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
 
-<!--                //TODO: post['user_id'];-->
-<!--                //TODO: $user['username'] => post['username'];-->
                 <p>
-                    <img src="<?php echo DX_URL;?>/views/assets/img/<?php echo $picture;?>" alt="Profile pictyre" width="50px" height="50px"> <ba
-                        ><?php echo htmlspecialchars($user['username']); ?></ba>
+                    <a href="<?php echo DX_URL . "/user/profile/" . $post['user_id'];?>alt="Profile picture" width="50px" height="50px">
+                    <img src="<?php echo DX_URL;?>/views/assets/img/<?php echo $picture;?>" alt="Profile picture" width="50px" height="50px">
+                    <ba>
+                        <?php echo htmlspecialchars($post['username']); ?>
+                    </ba>
+                    </a>
                 </p>
                 <p><bd><?php echo date("d-F-Y",strtotime($post['date_pubslished'])); ?></bd></p>
                 <h4><?php echo htmlentities($post['title'], ENT_QUOTES); ?></h4>
-                <!--                                    <p><img class="img-responsive" src="assets/img/blog01.jpg" alt=""></p>-->
-                <p><?php echo htmlentities($post['content'], ENT_QUOTES); ?></p>
+                <p><?php echo $post['content']; ?></p>
                 <br>
                 <p>
                     <bt>TAGS:
                         <?php foreach($tags as $tag): ?>
-                            <a href="<?php echo DX_URL . "posts/index?tag=" . htmlspecialchars(strtoupper($tag['name']));?>">
-                                <?php echo htmlentities($tag['name'], ENT_QUOTES); ?></a>
+                            <a href="<?php echo DX_URL . "posts/index?tag=" .
+                                htmlentities(strtoupper($tag['name']), ENT_QUOTES);?>">
+                                <?php echo
+                                htmlentities($tag['name'], ENT_QUOTES); ?></a>
                         <?php endforeach; ?>
                     </bt>
                 </p>

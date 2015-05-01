@@ -54,6 +54,20 @@ class Master_Model {
 		
 		return $this->db->affected_rows;
 	}
+
+    public function delete( $id ) {
+        if ( ! isset( $id ) ) die('Wrong model set.');
+
+        $query = "DELETE FROM {$this->table}";
+
+        $query .= " WHERE id = $id";
+
+
+
+        $this->db->query( $query );
+
+        return $this->db->affected_rows;
+    }
 	
 	public function add( $element ) {
 		$keys = array_keys( $element );
@@ -94,9 +108,6 @@ class Master_Model {
         if( ! empty( $limit ) ) {
             $query .= " LIMIT $limit";
         }
-
-        var_dump($query);
-        die;
 
         $result_set = $this->db->query( $query );
 

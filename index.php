@@ -56,6 +56,9 @@ if(strpos($method, "?") >= 0){
     $method = explode("?", $method)[0];
 }
 
+// TODO: Add check for folder files
+// array (
+// 'filename' .pgp
 $controllers = array(
     'comments',
     'contacts',

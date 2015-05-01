@@ -22,6 +22,19 @@ class Post_Model extends Master_Model {
         return $results;
     }
 
+    public function get_post( $id ){
+        $query = "SELECT p.id, p.title, p.content, p.date_pubslished, p.visits_count, u.id AS user_id, u.username
+                    FROM posts AS p
+                    LEFT JOIN users AS u
+                      ON p.user_id = u.id
+                    WHERE p.id = $id";
+
+        $result_set = $this->db->query( $query );
+        $results = $this->process_results( $result_set );
+
+        return $results;
+    }
+
     //TODO: Add validation of input data
     public function add_post ( $post, $tags_string ) {
 
@@ -214,6 +227,13 @@ class Post_Model extends Master_Model {
     public function get_categories_count(){
         $category_model = new \Models\Category_Model();
         $categories = $category_model->get_categories_with_posts_count( );
+
+        return $categories;
+    }
+
+    public function get_all_categories(){
+        $category_model = new \Models\Category_Model();
+        $categories = $category_model->find( );
 
         return $categories;
     }

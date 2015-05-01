@@ -27,7 +27,6 @@ class Posts_Controller extends Master_Controller {
             $month = $_GET["month"];
             $year = $_GET["year"];
             $posts = $this->model->get_posts_by_date($year, $month);
-
         } else {
             $posts = $this->model->get_posts();
         }
@@ -55,8 +54,32 @@ class Posts_Controller extends Master_Controller {
         include_once $this->layout;
     }
 
+
+
+    public function view( $id ) {
+        $posts = $this->model->get_post($id);
+        if( empty( $posts) ){
+            $this->sorry( "Post was not found!" );
+            exit;
+        }
+
+        $post = $posts[0];
+
+        $this->model->update_visits($post);
+
+        $tags = $this->model->get_tags_by_post_id($id);
+        $user = $this->model->get_user( $post['user_id'] );
+        $comments = $this->model->get_comments( $id );
+
+        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+        include_once $this->layout;
+    }
+
     public function add( ) {
         $auth = \Lib\Auth::get_instance();
+
+        $error_messages = array();
 
         if( !  $auth->is_admin() ) {
             header("Location: ". DX_URL. "posts/index");
@@ -68,6 +91,8 @@ class Posts_Controller extends Master_Controller {
             $category = $_POST['category_id'];
             $content = $_POST['content'];
             $user_id = $auth->get_logged_user()['id'];
+
+            $error_messages['title']= "title must be max 200 chars";
 
             $post = array(
                 'title' => $title,
@@ -87,27 +112,7 @@ class Posts_Controller extends Master_Controller {
             exit;
         }
 
-        $categories_list = $this->model->get_categories_count();
-
-        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
-
-        include_once $this->layout;
-    }
-
-    public function view( $id ) {
-        $posts = $this->model->get($id);
-        if( empty( $posts) ){
-            $this->sorry( "Post was not found!" );
-            exit;
-        }
-
-        $post = $posts[0];
-
-        $this->model->update_visits($post);
-
-        $tags = $this->model->get_tags_by_post_id($id);
-        $user = $this->model->get_user( $post['user_id'] );
-        $comments = $this->model->get_comments( $id );
+        $categories_list = $this->model->get_all_categories();
 
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 
@@ -115,6 +120,13 @@ class Posts_Controller extends Master_Controller {
     }
 
     public function edit ( $id ){
+
+        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+        include_once $this->layout;
+    }
+
+    public function delete ( $id ){
 
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 

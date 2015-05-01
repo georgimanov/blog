@@ -40,13 +40,30 @@
                 </button>
                 <a class="navbar-brand" href="<?php echo DX_URL;?>">Georgi Manov's Blog</a>
                 <?php
-                if( ! empty( $this->logged_user ) ) {
-                    echo "<details><summary><a href=". DX_URL . "user/profile/{$this->logged_user['id']} style='color: #ffff00'> Hello, {$this->logged_user['username']}</a></summary>";
-                    printf("<a href='%s' style='color: #000' >Post</a>",DX_URL . "posts/admin/index");
+                if( ! empty( $this->logged_user ) ) :
+                    printf("
+                            <a href=". DX_URL .
+                            "user/profile/%s style='color: #ffff00'>
+                            Hello,
+                            %s
+                            </a>
+                        ", htmlentities($this->logged_user['id']), htmlentities($this->logged_user['username']));
+                endif;
+
+                if( $this->is_admin ) :
+                    echo "<details><summary>ADMIN PANEL</summary>";
+                    printf("<a href='%s' style='color: #000' >Post</a>",DX_URL . "posts/admin");
                     print("<br/ >");
-                    printf("<a href='%s' style='color: #000' >Comments</a>",DX_URL . "comments/admin/index");
+                    printf("<a href='%s' style='color: #000' >Comments</a>",DX_URL . "comments/admin");
+                    print("<br/ >");
+                    printf("<a href='%s' style='color: #000' >Categories</a>",DX_URL . "categories/admin");
+//                    print("<br/ >");
+//                    printf("<a href='%s' style='color: #000' >Tags</a>",DX_URL . "tags/admin");
+//                    print("<br/ >");
+//                    printf("<a href='%s' style='color: #000' >Users</a>",DX_URL . "tags/admin");
                     print("</details>");
-                } ?>
+                endif;
+                ?>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">

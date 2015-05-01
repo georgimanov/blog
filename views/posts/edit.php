@@ -3,7 +3,7 @@
 <div class="container pt">
     <div class="row mt">
         <div class="col-lg-6 col-lg-offset-3 centered">
-            <h3>Add new post</h3>
+            <h3>Edit post</h3>
             <hr>
         </div>
     </div>
@@ -31,11 +31,11 @@
 
                 <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="Enter your text here" required="required">
                 </textarea>
-                    <script>
-                        // Replace the <textarea id="editor1"> with a CKEditor
-                        // instance, using default configuration.
-                        CKEDITOR.replace( 'content' );
-                    </script>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'content' );
+                </script>
                 <br>
                 <button type="submit" class="btn btn-success">SUBMIT</button>
             </form>

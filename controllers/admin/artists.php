@@ -68,8 +68,7 @@ class Artists_Controller extends Admin_Controller {
 	public function view( $id ) {
 		$artists = $this->model->get( $id );
 		
-		var_dump($artists); die();
-		
+
 		$template_name = DX_ROOT_DIR . $this->views_dir . 'index.php';
 		
 		include_once $this->layout;

@@ -22,7 +22,8 @@ class Master_Controller {
 		$auth = \Lib\Auth::get_instance();
 		$logged_user = $auth->get_logged_user();
 		$this->logged_user = $logged_user;
-			
+        $is_admin = $auth->is_admin();
+		$this->is_admin = $is_admin;
 		$this->layout = DX_ROOT_DIR . '/views/layouts/default.php';
 	}
 	
@@ -31,6 +32,44 @@ class Master_Controller {
 		
 		include_once $this->layout;
 	}
+
+    public function delete($id)
+    {
+        $auth = \Lib\Auth::get_instance();
+
+        $error_messages = array();
+
+        if( ! $auth->is_admin() ) {
+            header("Location: ". DX_URL);
+            exit;
+        }
+
+        $element = $this->model->get($id);
+
+        if( empty( $element ) ){
+            $this->index();
+            exit;
+        }
+
+        $element = $element[0];
+
+        if( !empty ($_POST['id']) ) {
+            $id = $_POST['id'];
+
+            $result = $this->model->delete( $id );
+
+            if($result > 0){
+                $this->message = 'Successfully edited!';
+            } else {
+                $this->message = 'An error has occurred!';
+            }
+
+        }
+
+        $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
+
+        include_once $this->layout;
+    }
 
     public function error() {
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
