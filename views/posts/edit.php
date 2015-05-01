@@ -12,24 +12,44 @@
         <div class="col-lg-8 col-lg-offset-2">
             <form role="form" method="post">
                 <div class="form-group">
-                    <input name="title" class="form-control" placeholder="Title" required="required">
+                    <input name="title" value="<?php echo $post['title'];?>" class="form-control" placeholder="Title" required="required">
                     <br>
                 </div>
                 <div class="form-group">
-                    <input name="tags" class="form-control" placeholder="Tags">
+                Date published: <?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($post['date_pubslished']));?><br/>
+                Set new date: <input type="datetime-local" name="date_pubslished" value=" <?php echo strftime('%Y-%m-%dT%H:%M:%S', strtotime($post['date_pubslished']));?>" />
+                    </div>
+                <div class="form-group">
+
+                    <input name="tags" value="<?php echo $tags_string; ?>" class="form-control" placeholder="Tags">
+
                     <br>
                 </div>
                 <div class="form-group">
 
                     <select name="category_id"  class="form-control">
                         <?php foreach( $categories_list as $category ): ?>
-                        <option class="form-control" value="<?php echo $category['id'];?>"><?php echo $category['name'];?>
+                                <option class="form-control" value="<?php echo $category['id'];?>"
+
+                                    <?php echo ($category['id']== $post['category_id']) ? "selected" : "";?>
+
+                                    ><?php echo $category['name'];?>
                             <?php endforeach;?>
                     </select>
                     <br>
                 </div>
 
-                <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="Enter your text here" required="required">
+                <div class="form-group">
+                        <details>
+                            <summary>Current content</summary>
+                            <p>
+                                <?php echo $post['content'];?>
+                            </p>
+                        </details>
+
+                </div>
+
+                <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="" required="required">
                 </textarea>
                 <script>
                     // Replace the <textarea id="editor1"> with a CKEditor
@@ -37,7 +57,7 @@
                     CKEDITOR.replace( 'content' );
                 </script>
                 <br>
-                <button type="submit" class="btn btn-success">SUBMIT</button>
+                <button type="submit" class="btn btn-success">EDIT</button>
             </form>
         </div>
     </div><!-- /row -->

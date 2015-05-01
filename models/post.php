@@ -131,6 +131,14 @@ class Post_Model extends Master_Model {
 
     public function get_posts_by_tag( $tag_name ) {
 
+        if( empty ( $tag_name ) ) {
+            return array();
+        } else {
+            $tag_name = strtolower($tag_name);
+        }
+
+
+
         $query = " SELECT p.id, p.title, p.content, p.date_pubslished, p.visits_count, u.id AS user_id, u.username
                         FROM POSTS as p";
 
@@ -142,7 +150,7 @@ class Post_Model extends Master_Model {
                         ON p.user_id = u.id";
 
         if( ! empty( $tag_name ) ) {
-            $query .= " WHERE t.name ='{$tag_name}'";
+            $query .= " WHERE LOWER(t.name) ='{$tag_name}'";
         }
 
         $query .= " ORDER BY p.date_pubslished

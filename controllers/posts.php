@@ -119,7 +119,66 @@ class Posts_Controller extends Master_Controller {
         include_once $this->layout;
     }
 
-    public function edit ( $id ){
+    public function edit($id)
+    {
+        $auth = \Lib\Auth::get_instance();
+
+        $error_messages = array();
+
+        if( !  $auth->is_admin() ) {
+            header("Location: ". DX_URL. "posts/index");
+            exit;
+        }
+
+        $post = $this->model->get($id);
+        $post = $post[0];
+        if( empty( $post ) ){
+            $this->sorry("Post was not found!");
+            exit;
+        }
+
+        $display_tags = $this->model->get_tags_by_post_id($id);
+
+        $tags_string = "";
+
+        if( ! empty ($display_tags) ){
+            foreach($display_tags as $current_tag){
+
+                $tags_string .= $current_tag['name'] . ', ' ;
+            }
+
+            $tags_string = rtrim( $tags_string, ', ' );
+        }
+
+        $categories_list = $this->model->get_all_categories();
+
+        if( ! empty( $_POST['id'] ) && ! empty( $_POST['title'] ) && ! empty( $_POST['category_id'] )  && ! empty( $_POST['content'] ) ) {
+            $id = $_POST['id'];
+            $title = $_POST['title'];
+            $category_id = $_POST['category_id'];
+            $content = $_POST['content'];
+
+            $post = array(
+                'id' => $id,
+                'title' => $title,
+                'category_id' => $category_id,
+                'content' => $content
+            );
+
+            $tags = null;
+            if( ! empty ( $_POST['tags'] ) ) {
+                $tags = $_POST['tags'];
+            }
+
+            $result = $this->model->update_post( $post , $tags );
+
+            if($result > 0){
+                $this->message = 'Successfully edited post!';
+            } else {
+                $this->message = 'An error has occurred!';
+            }
+
+        }
 
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 

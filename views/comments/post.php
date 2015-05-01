@@ -3,9 +3,11 @@
         <h2>List of comments for post:</h2>
         <hr>
             <div class="container">
+                Id: <?php echo htmlentities($post['id']); ?> <br>
                 Title: <?php echo htmlentities($post['title']); ?> <br>
                 Publiesh: <?php echo htmlentities($post['date_pubslished']); ?> <br>
-                User : <?php echo htmlentities($post['username']) ;?>
+                User : <?php echo htmlentities($post['username']) ;?> <br>
+                <a href="<?php echo DX_URL . 'posts/admin';?>" class="text-right">#back </a>
             </div>
         <hr>
         <div class="table-responsive">
@@ -39,7 +41,7 @@
 
                         </td>
                         <td>
-                            <?php echo htmlentities(substr($comment['name'], 0, 50)) . "..."; ?>
+                            <?php echo htmlentities($comment['name'])?>
                         </td>
                         <td>
                             <?php echo htmlentities($comment['email']); ?>
