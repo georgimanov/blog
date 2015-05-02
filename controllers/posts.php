@@ -198,12 +198,26 @@ class Posts_Controller extends Master_Controller {
             exit;
         }
 
+        if( ! empty( $_POST['id'] ) ) {
+            $result = $this->model->delete_post($id);
+
+            var_dump($result);
+            die;
+
+            if($result > 0){
+                $this->admin();
+            } else {
+                $this->message = 'An error has occurred!';
+            }
+        }
+
         $post = $this->model->get($id);
-        $post = $post[0];
         if( empty( $post ) ){
             $this->sorry("Post was not found!");
             exit;
         }
+
+        $post = $post[0];
 
         $display_tags = $this->model->get_tags_by_post_id($id);
 

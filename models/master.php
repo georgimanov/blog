@@ -62,8 +62,6 @@ class Master_Model {
 
         $query .= " WHERE id = $id";
 
-
-
         $this->db->query( $query );
 
         return $this->db->affected_rows;

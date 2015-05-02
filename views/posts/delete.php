@@ -9,7 +9,7 @@
             <i class="alert-info">
                 <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
             </i>
-            
+
         </div>
     </div>
 

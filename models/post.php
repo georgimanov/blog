@@ -112,12 +112,17 @@ class Post_Model extends Master_Model {
         return $this->db->affected_rows;
     }
 
-    public function delete ( $id ) {
-        $tags = $this->get_tags_by_post_id( $id );
 
-        if( count($tags) > 0 ) {
+    public function delete_post ( $id ) {
 
-        }
+        $comments_model = new \Models\Comment_Model();
+        $posts_have_tag_model = new \Models\Poststags_Model();
+        $posts_have_tag_model->delete_relation( $id );
+        $comments_model->delete_comments_by_post_id( $id );
+
+        $result = $this->delete($id);
+
+        return $result;
     }
 
     public function update_visits($post){
