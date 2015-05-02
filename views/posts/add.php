@@ -1,4 +1,4 @@
-<!-- +++++ Post Section +++++ -->
+<!-- +++++ Post Add Section +++++ -->
 
 <div class="container pt">
     <div class="row mt">

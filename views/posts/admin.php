@@ -1,3 +1,5 @@
+<!-- +++++ Posts Admin Section +++++ -->
+
 <div class="container">
     <div class="row">
         <h2 class="centered">List of posts</h2>

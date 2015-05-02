@@ -1,4 +1,4 @@
-<!-- +++++ Post Section +++++ -->
+<!-- +++++ Post Delete Section +++++ -->
 
 <div class="container pt">
     <div class="row mt">
@@ -19,7 +19,7 @@
                 <input type="hidden" name="id" value="<?php echo $post['id'];?>">
                 <div class="form-group">
                     <label form="title">Title</label>
-                    <input name="title" id="title" value="<?php echo $post['title'];?>" class="form-control" placeholder="Title" required="required" readonly>
+                    <input name="title" id="title" value="<?php echo htmlentities($post['title']);?>" class="form-control" placeholder="Title" required="required" readonly>
                 </div>
                 <div class="form-group">
                     <label form="date_pubslished">Date published: </label>
@@ -27,14 +27,14 @@
                 </div>
                 <div class="form-group">
                     <label form="tags">Tags: </label>
-                    <input name="tags" value="<?php echo $tags_string; ?>" class="form-control" placeholder="Tags" readonly>
+                    <input name="tags" value="<?php echo htmlentities($tags_string); ?>" class="form-control" placeholder="Tags" readonly>
                 </div>
                 <div class="form-group">
 
                     <?php foreach( $categories_list as $category ): ?>
                         <?php if ($category['id']== $post['category_id']):?>
                             <label form="category">Category</label>
-                            <input name="category" value="<?php echo $category['name'] ;?>" class="form-control" readonly>
+                            <input name="category" value="<?php echo htmlentities($category['name']) ;?>" class="form-control" readonly>
                             <?php break; endif;?>
                     <?php endforeach;?>
                     </select>
@@ -43,7 +43,7 @@
 
                 <label for="content">Content</label>
                 <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="" required="required" readonly>
-                    <?php echo ($post['content']);?>
+                    <?php echo htmlentities($post['content']);?>
                 </textarea>
 
                 <br>

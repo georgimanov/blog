@@ -32,7 +32,7 @@
 
                         </p>
                         <h4><?php echo htmlentities($post['title'], ENT_QUOTES); ?></h4>
-                        <p><?php echo substr($post['content'],0,300) . "..."; ?></p>
+                        <p><?php echo htmlentities(substr($post['content'],0,300)) . "..."; ?></p>
                         <bt><span><?php echo $post['visits_count']; ?></span> visits</bt>
 
                         <p><a href="<?php echo DX_URL . "posts/view/" . $post['id']; ?>">Continue Reading...</a></p>

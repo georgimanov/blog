@@ -17,7 +17,7 @@
             <form role="form" method="post">
                 <input type="hidden" name="id" value="<?php echo $post['id'];?>">
                 <div class="form-group">
-                    <input name="title" value="<?php echo $post['title'];?>" class="form-control" placeholder="Title" required="required">
+                    <input name="title" value="<?php echo htmlentities($post['title']);?>" class="form-control" placeholder="Title" required="required">
                     <br>
                 </div>
                 <div class="form-group">
@@ -25,7 +25,7 @@
                     </div>
                 <div class="form-group">
 
-                    <input name="tags" value="<?php echo $tags_string; ?>" class="form-control" placeholder="Tags">
+                    <input name="tags" value="<?php echo htmlentities($tags_string); ?>" class="form-control" placeholder="Tags">
 
                     <br>
                 </div>
@@ -37,7 +37,7 @@
 
                                     <?php echo ($category['id']== $post['category_id']) ? "selected" : "";?>
 
-                                    ><?php echo $category['name'];?>
+                                    ><?php echo htmlentities($category['name']);?>
                             <?php endforeach;?>
                     </select>
                     <br>
@@ -47,7 +47,7 @@
                         <details>
                             <summary>Current content</summary>
                             <p>
-                                <?php echo $post['content'];?>
+                                <?php echo htmlentities($post['content']);?>
                             </p>
                         </details>
 

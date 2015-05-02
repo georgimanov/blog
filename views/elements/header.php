@@ -75,9 +75,9 @@
 
                         <?php
                         if( ! empty( $this->logged_user ) ) {
-                            echo "<li><a href=". DX_URL . "user/logout> Logout</a></li>";
+                            echo "<li><a href=". DX_URL . "user/logout>Logout</a></li>";
                         } else {
-                            echo "<li><a href=" . DX_URL . "user/login> Login</a></li>";
+                            echo "<li><a href=" . DX_URL . "user/login>Login</a></li>";
                         }?>
 
                 </ul>

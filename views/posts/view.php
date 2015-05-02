@@ -15,7 +15,7 @@ if($user['username'] === 'georgi'){
                     <a href="<?php echo DX_URL . "/user/profile/" . $post['user_id'];?>alt="Profile picture" width="50px" height="50px">
                     <img src="<?php echo DX_URL;?>/views/assets/img/<?php echo $picture;?>" alt="Profile picture" width="50px" height="50px">
                     <ba>
-                        <?php echo htmlspecialchars($post['username']); ?>
+                        <?php echo htmlentities($post['username']); ?>
                     </ba>
                     </a>
                 </p>
