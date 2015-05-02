@@ -52,15 +52,15 @@ class Comments_Controller extends Master_Controller {
     public function add()
     {
 
-        if ( $_SERVER['REQUEST_METHOD'] != "POST") {
-            $number = rand(1, 100);
-            $token_addition = $number;
-            $_SESSION['CSRFToken'] = "OWY4NmQwasd4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA" . $token_addition;
-        } else {
-            if ($_POST ['CSRFToken'] != $_SESSION['CSRFToken'] ) {
-                die;
-            }
-        }
+//        if ( $_SERVER['REQUEST_METHOD'] != "POST") {
+//            $number = rand(1, 100);
+//            $token_addition = $number;
+//            $_SESSION['CSRFToken'] = "OWY4NmQwasd4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA" . $token_addition;
+//        } else {
+//            if ($_POST ['CSRFToken'] != $_SESSION['CSRFToken'] ) {
+//                header("Location " . "")
+//            }
+//        }
 
         if( ! empty( $_POST['name'] ) && ! empty( $_POST['content'] ) && ! empty ( $_POST['post_id'] ) ) {
             $name = $_POST['name'];

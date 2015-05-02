@@ -12,7 +12,7 @@ if($user['username'] === 'georgi'){
             <div class="col-lg-8 col-lg-offset-2">
 
                 <p>
-                    <a href="<?php echo DX_URL . "/user/profile/" . $post['user_id'];?>alt="Profile picture" width="50px" height="50px">
+                    <a href="<?php echo DX_URL . "user/profile/" . $post['user_id'];?>" alt="Profile picture" width="50px" height="50px">
                     <img src="<?php echo DX_URL;?>/views/assets/img/<?php echo $picture;?>" alt="Profile picture" width="50px" height="50px">
                     <ba>
                         <?php echo htmlentities($post['username']); ?>
