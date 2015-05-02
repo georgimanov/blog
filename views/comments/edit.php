@@ -23,13 +23,15 @@
                         <br>
                     </div>
 
-                    <div class="form-group">
-                        <details>
-                            <summary>Content</summary>
-                            <p><?php echo htmlentities($element['content']); ?></p>
-                        </details>
-                    </div>
-                    <textarea name="content"  placeholder=" <?php echo htmlentities($element['content']); ?>" class="form-control" rows="6"  required="required" ></textarea>
+<!--                    <div class="form-group">-->
+<!--                        <details>-->
+<!--                            <summary>Content</summary>-->
+<!--                            <p>--><?php //echo htmlentities($element['content']); ?><!--</p>-->
+<!--                        </details>-->
+<!--                    </div>-->
+                    <textarea name="content"  placeholder="" class="form-control" rows="6"  required="required" >
+                        <?php echo htmlentities($element['content']); ?>
+                    </textarea>
 
                     <input name="id" value=" <?php echo $element['id']; ?>" type="hidden">
 

@@ -15,25 +15,32 @@ class User_Controller extends Master_Controller {
     }
 
     public function login() {
-        if( ! empty( $_POST['username'] ) && ! empty( $_POST['password'] ) ) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
 
-            $auth = \Lib\Auth::get_instance();
-            $is_logged_in = $auth->login( $username, $password );
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            if($is_logged_in ){
-                header("Location: ". DX_URL. "posts/index");
-                exit;
-            } else {
-                $message = "wrong username or password!";
+            if( ! empty( $_POST['username'] ) && ! empty( $_POST['password'] ) ) {
+                $username = empty($_POST['username']) ? "" : $_POST['username'];
+                $password = empty($_POST['password']) ? "" : $_POST['password'];
+
+                $auth = \Lib\Auth::get_instance();
+                $is_logged_in = $auth->login( $username, $password );
+
+                if($is_logged_in ){
+                    header("Location: ". DX_URL. "posts/index");
+                    exit;
+                } else {
+                    $message = "wrong username or password!";
+                }
             }
-        }
 
+
+        }
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';
 
         include_once $this->layout;
+
     }
+
 
     public function register() {
         $auth = \Lib\Auth::get_instance();

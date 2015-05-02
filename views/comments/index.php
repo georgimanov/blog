@@ -32,7 +32,7 @@
 
                         </td>
                         <td>
-                            <?php echo htmlentities(substr($comment['name'], 0, 50)) . "..."; ?>
+                            <?php echo htmlentities($comment['name']);?>
                         </td>
                         <td>
                             <?php echo htmlentities($comment['email']); ?>

@@ -79,6 +79,8 @@ class Tags_Controller extends Master_Controller {
             $result = $this->model->update( $tag );
 
             if($result > 0){
+                $element = $this->model->get($id);
+                $element = $element[0];
                 $this->message = 'Successfully edited tag';
             } else {
                 $this->message = 'An error has occurred!';

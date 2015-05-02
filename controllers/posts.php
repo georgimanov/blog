@@ -185,6 +185,8 @@ class Posts_Controller extends Master_Controller {
             $result = $this->model->update_post( $post , $tags );
 
             if($result > 0){
+                $post = $this->model->get($id);
+                $post = $post[0];
                 $message = 'Successfully edited post!';
             } else {
                 $message = 'An error has occurred!';

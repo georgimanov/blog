@@ -3,7 +3,7 @@
 <div class="container pt">
     <div class="row mt">
         <div class="col-lg-6 col-lg-offset-3 centered">
-            <h3>Delete tag<a href="<?php echo DX_URL . 'categories/admin'; ?>"># back</a></h3>
+            <h3>Delete tag <a href="<?php echo DX_URL . 'tags/admin'; ?>">#back</a></h3>
             <hr>
             <div class="row">
                 <i class="alert-info">

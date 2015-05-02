@@ -70,9 +70,9 @@ class Master_Controller {
             $result = $this->model->delete( $id );
 
             if($result > 0){
-                $this->message = 'Successfully deleted!';
+                $message = 'Successfully deleted!';
             } else {
-                $this->message = 'An error has occurred!';
+                $message = 'An error has occurred!';
             }
         }
 

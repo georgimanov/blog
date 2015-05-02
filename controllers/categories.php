@@ -13,11 +13,9 @@ class Categories_Controller extends Master_Controller {
         $this->message = "";
     }
 
-    // TODO Authorization
     public function admin()
     {
         $auth = \Lib\Auth::get_instance();
-
         $error_messages = array();
 
         if( !  $auth->is_admin() ) {
@@ -104,6 +102,8 @@ class Categories_Controller extends Master_Controller {
             $result = $this->model->update( $category );
 
             if($result > 0){
+                $element = $this->model->get($id);
+                $element = $element[0];
                 $this->message = 'Successfully edited category';
             } else {
                 $this->message = 'An error has occurred!';

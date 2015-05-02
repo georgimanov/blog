@@ -3,7 +3,7 @@
 <div class="container pt">
     <div class="row mt">
         <div class="col-lg-6 col-lg-offset-3 centered">
-            <h3>Edit post</h3>
+            <h3>Edit post <a href="<?php echo DX_URL . "posts/admin";?>">#back</a> </h3>
             <i class="alert-info">
                 <?php echo !empty ($message) ? $message  : "" ; ?>
             </i>

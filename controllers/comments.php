@@ -131,6 +131,7 @@ class Comments_Controller extends Master_Controller {
             $result = $this->model->update( $comment );
 
             if($result > 0){
+                $element = $this->model->get($id);
                 $message = $this->message['successful_edit'];
             } else {
                 $message = $this->message['error'];
