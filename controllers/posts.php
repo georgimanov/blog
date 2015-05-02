@@ -201,9 +201,6 @@ class Posts_Controller extends Master_Controller {
         if( ! empty( $_POST['id'] ) ) {
             $result = $this->model->delete_post($id);
 
-            var_dump($result);
-            die;
-
             if($result > 0){
                 $this->admin();
             } else {

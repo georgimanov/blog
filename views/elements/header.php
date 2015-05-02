@@ -35,7 +35,7 @@
     <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" id="navbar-show-menu-btn" class="navbar-toggle glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target=".navbar-collapse">
 
                 </button>
                 <a class="navbar-brand" href="<?php echo DX_URL;?>">Georgi Manov's Blog</a>
@@ -59,8 +59,8 @@
                     printf("<a href='%s' style='color: #000' >Categories</a>",DX_URL . "categories/admin");
                     print("<br/ >");
                     printf("<a href='%s' style='color: #000' >Contacts</a>",DX_URL . "contacts/admin");
-//                    print("<br/ >");
-//                    printf("<a href='%s' style='color: #000' >Tags</a>",DX_URL . "tags/admin");
+                    print("<br/ >");
+                    printf("<a href='%s' style='color: #000' >Tags</a>",DX_URL . "tags/admin");
 //                    print("<br/ >");
 //                    printf("<a href='%s' style='color: #000' >Users</a>",DX_URL . "tags/admin");
                     print("</details>");

@@ -53,6 +53,10 @@ class User_Controller extends Master_Controller {
                     'password' => md5($password)
                 );
 
+                if( ! empty( $_POST['email'] ) ) {
+                    $new_user['email'] = $_POST['email'];
+                }
+
                 $user = $this->model->add($new_user);
 
                 header("Location: ". DX_URL. "user/login");

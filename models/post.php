@@ -117,6 +117,7 @@ class Post_Model extends Master_Model {
 
         $comments_model = new \Models\Comment_Model();
         $posts_have_tag_model = new \Models\Poststags_Model();
+
         $posts_have_tag_model->delete_relation( $id );
         $comments_model->delete_comments_by_post_id( $id );
 

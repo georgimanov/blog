@@ -42,4 +42,18 @@ class Tag_Model extends Master_Model {
 
         return $results;
     }
+
+    public function clear () {
+
+        $query = "DELETE FROM tags
+                  WHERE tags.id
+                  NOT IN
+                    (SELECT tag_id
+                    FROM posts_have_tags)";
+
+        $result_set = $this->db->query( $query );
+        $results = $this->process_results( $result_set );
+
+        return $results;
+    }
 }
