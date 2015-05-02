@@ -5,7 +5,6 @@
         <div class="col-lg-6 col-lg-offset-3 centered">
             <h3>Edit post</h3>
             <i class="alert-info">
-                <?php var_dump($this->message); ?>
                 <?php echo !empty ($message) ? $message  : "" ; ?>
             </i>
             <hr>

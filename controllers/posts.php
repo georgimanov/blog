@@ -123,8 +123,6 @@ class Posts_Controller extends Master_Controller {
     {
         $auth = \Lib\Auth::get_instance();
 
-        $error_messages = array();
-
         if( !  $auth->is_admin() ) {
             header("Location: ". DX_URL. "posts/index");
             exit;
@@ -175,9 +173,9 @@ class Posts_Controller extends Master_Controller {
             $result = $this->model->update_post( $post , $tags );
 
             if($result > 0){
-                $this->message = 'Successfully edited post!';
+                $message = 'Successfully edited post!';
             } else {
-                $this->message = 'An error has occurred!';
+                $message = 'An error has occurred!';
             }
 
         }
