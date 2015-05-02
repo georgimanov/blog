@@ -76,17 +76,29 @@ class Posts_Controller extends Master_Controller {
         include_once $this->layout;
     }
 
+
     public function add( ) {
         $auth = \Lib\Auth::get_instance();
 
         $error_messages = array();
 
-        if( !  $auth->is_admin() ) {
+        if( ! $auth->is_admin() ) {
             header("Location: ". DX_URL. "posts/index");
             exit;
         }
 
-        if( ! empty( $_POST['title'] ) && ! empty( $_POST['category_id'] )  && ! empty( $_POST['content'] ) ) {
+        if ( $_SERVER['REQUEST_METHOD'] != "POST") {
+            $number = rand(1, 100);
+            $token_addition = $number;
+            $_SESSION['CSRFToken'] = "OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA" . $token_addition;
+        } else {
+            if ($_POST ['CSRFToken'] != $_SESSION['CSRFToken'] ) {
+                die;
+            }
+        }
+
+
+        if( ! empty( $_POST['title'] ) && ! empty( $_POST['category_id'] )  && ! empty( $_POST['content'] )  ) {
             $title = $_POST['title'];
             $category = $_POST['category_id'];
             $content = $_POST['content'];

@@ -1,5 +1,10 @@
 <!-- +++++ Comment Section +++++ -->
 
+<?php
+
+
+;?>
+
 <div id="white">
     <div class="container">
         <div class="row">
@@ -19,6 +24,8 @@
                         <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                         <br>
                     </div>
+                            <input type="hidden" name="CSRFToken" value="<?php echo $_SESSION['CSRFToken'];?>">
+
                     <input name="post_id" type="hidden" value="<?php echo $post['id']; ?>"/>
                     <textarea name="content" class="form-control" rows="6" placeholder="Enter your text here" required="required"></textarea>
                     <br>

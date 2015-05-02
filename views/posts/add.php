@@ -29,6 +29,8 @@
                     <br>
                 </div>
 
+                <input type="hidden" name="CSRFToken" value="<?php echo $_SESSION['CSRFToken']; ?>">
+
                 <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="Enter your text here" required="required">
                 </textarea>
                     <script>

@@ -7,9 +7,8 @@
             <hr>
             <p>To delete this post, simply press the delete button below</p>
             <i class="alert-info">
-                <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+                <?php echo !empty ($message) ? $message  : "" ; ?>
             </i>
-
         </div>
     </div>
 
