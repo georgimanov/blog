@@ -39,6 +39,7 @@ class Contacts_Controller extends Master_Controller {
                 $message .= "<br> Text not provided";
             }
         }
+
         if ( empty ( $message ) && $_SERVER['REQUEST_METHOD'] == "POST" ) {
 
             $name = $_POST['name'];

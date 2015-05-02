@@ -16,7 +16,7 @@
         <div class="col-lg-8 col-lg-offset-2">
             <form role="form" method="post">
                 <div class="form-group">
-                    <input name="name" value="<?php echo $element['name']; ?>" class="form-control" placeholder="Name" required="required">
+                    <input name="name" value="<?php echo htmlentities($element['name']); ?>" class="form-control" placeholder="Name" required="required">
                     <input name="id" value="<?php echo $element['id']; ?>" type="hidden">
                     <br>
 
