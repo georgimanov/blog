@@ -53,12 +53,9 @@
                 </div>
 
                 <textarea name="content" class="form-control" id="editor1" rows="6" placeholder="" required="required">
+                    <?php echo htmlentities($post['content']);?>
                 </textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'content' );
-                </script>
+
                 <br>
                 <button type="submit" class="btn btn-success">EDIT</button>
             </form>

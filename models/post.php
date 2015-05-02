@@ -78,7 +78,11 @@ class Post_Model extends Master_Model {
 
     public function update_post ( $post, $tags_string ) {
 
-        $added_post_id = $this->update($post);
+        $updated_post_id = $this->update($post);
+
+        if( ! $updated_post_id > 0 ){
+            return 0;
+        }
 
         if ( count($tags_string) > null ){
             $tags_names = explode(',', $tags_string);
@@ -99,9 +103,7 @@ class Post_Model extends Master_Model {
                 // Replace sequences of spaces with single space
                 $tag_name = preg_replace('/\\s+/', ' ', $tag_name);
 
-
                 if( ! empty ($tag_name) ){
-
                     $tag_exists = $tag_model->get_by_name ( $tag_name );
 
                     $tag_id = 0;
@@ -115,7 +117,7 @@ class Post_Model extends Master_Model {
                         $tag_id = $tag_exists[0]['id'];
                     }
 
-                    $posts_have_tag_model->add_relation($added_post_id, $tag_id);
+                    $posts_have_tag_model->add_relation($post['id'], $tag_id);
                 }
             }
         }

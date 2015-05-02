@@ -49,7 +49,7 @@ class Master_Model {
 		$query = rtrim( $query, ',' );
 		
 		$query .= " WHERE id = {$element['id']}";
-		
+
 		$this->db->query( $query );
 		
 		return $this->db->affected_rows;
