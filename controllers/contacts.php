@@ -15,35 +15,31 @@ class Contacts_Controller extends Master_Controller {
     {
         $new_contact_entry_id = -1;
         $redirect = (__FUNCTION__);
-        $new_contact_entry_id = 0;
-
         $message = "";
-        if ( ! empty( $_POST['name'] ) || ! empty( $_POST['email'] ) || ! empty( $_POST['subject'] ) || ! empty( $_POST['text'] )) {
 
-            if( empty( $_POST['name'] ) ) {
-                $message .= "<br> Name not provided";
-            }
 
-            if ( ! Verify::is_mail_valid( $_POST['email'] )) {
+        if (empty($_POST['name'])) {
+            $message .= "<br> Name not provided";
+        }
+
+        if (empty($_POST['email'])) {
+            $message .= "<br> Email not provided";
+        } else {
+            if (!Verify::is_mail_valid($_POST['email'])) {
                 $message .= "<br> Email does not meet criteria";
             }
+        }
 
-            if( empty( $_POST['email'] ) ) {
-                $message .= "<br> Email not provided";
-            }
+        if (empty($_POST['subject'])) {
+            $message .= "<br> Subject not provided";
+        }
 
-            if ( empty( $_POST['subject'] )) {
-                $message .= "<br> Subject not provided";
-            }
+        if (empty($_POST['text'])) {
+            $message .= "<br> Text not provided";
+        }
 
-            if ( empty( $_POST['text'] )) {
-                $message .= "<br> Text not provided";
-            }
+        if ( empty ( $message ) ) {
 
-        } else if ( ! empty( $_POST['name'] )
-            && ! empty( $_POST['email'] )
-            && ! empty( $_POST['subject'] )
-            && ! empty( $_POST['text'] )) {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $subject = $_POST['subject'];
@@ -56,8 +52,7 @@ class Contacts_Controller extends Master_Controller {
                 'text' => $text,
             );
 
-            $new_contact_entry_id = $this->model->add( $contact );
-
+            $new_contact_entry_id = $this->model->add($contact);
             if( $new_contact_entry_id > 0 ){
                 $redirect = "thanks";
             }
@@ -72,10 +67,6 @@ class Contacts_Controller extends Master_Controller {
 
                 mail($to, $subject, $message, $headers);
             }
-        }
-
-        if( $new_contact_entry_id > 0 ){
-            $redirect = "thanks";
         }
 
         $template_name = DX_ROOT_DIR . $this->views_dir . $redirect . '.php';
