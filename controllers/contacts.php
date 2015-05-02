@@ -17,28 +17,29 @@ class Contacts_Controller extends Master_Controller {
         $redirect = (__FUNCTION__);
         $message = "";
 
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-        if (empty($_POST['name'])) {
-            $message .= "<br> Name not provided";
-        }
+            if (empty($_POST['name'])) {
+                $message .= "<br> Name not provided";
+            }
 
-        if (empty($_POST['email'])) {
-            $message .= "<br> Email not provided";
-        } else {
-            if (!Verify::is_mail_valid($_POST['email'])) {
-                $message .= "<br> Email does not meet criteria";
+            if (empty($_POST['email'])) {
+                $message .= "<br> Email not provided";
+            } else {
+                if (!Verify::is_mail_valid($_POST['email'])) {
+                    $message .= "<br> Email does not meet criteria";
+                }
+            }
+
+            if (empty($_POST['subject'])) {
+                $message .= "<br> Subject not provided";
+            }
+
+            if (empty($_POST['text'])) {
+                $message .= "<br> Text not provided";
             }
         }
-
-        if (empty($_POST['subject'])) {
-            $message .= "<br> Subject not provided";
-        }
-
-        if (empty($_POST['text'])) {
-            $message .= "<br> Text not provided";
-        }
-
-        if ( empty ( $message ) ) {
+        if ( empty ( $message ) && $_SERVER['REQUEST_METHOD'] == "POST" ) {
 
             $name = $_POST['name'];
             $email = $_POST['email'];
