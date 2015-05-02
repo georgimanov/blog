@@ -24,6 +24,13 @@ class Comments_Controller extends Master_Controller {
 
     public function post($id)
     {
+        $auth = \Lib\Auth::get_instance();
+
+        if( !  $auth->is_admin() ) {
+            header("Location: ". DX_URL. "posts/index");
+            exit;
+        }
+
         include  DX_ROOT_DIR . '/models/post.php';
         $post_model = new \Models\Post_Model();
         $comments = $post_model->get_comments($id);

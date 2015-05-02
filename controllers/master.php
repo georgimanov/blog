@@ -6,6 +6,7 @@ class Master_Controller {
 	
 	protected $layout;
 	protected $views_dir;
+    protected $message = array();
 	
 	public function __construct( $class_name = '\Controllers\Master_Controller', 
 			$model = 'master',
@@ -23,6 +24,15 @@ class Master_Controller {
 		$logged_user = $auth->get_logged_user();
 		$this->logged_user = $logged_user;
         $is_admin = $auth->is_admin();
+        $this->message = array(
+            'error' => 'Something went wrong',
+            'success' => 'Success',
+            'edit' => 'Successful edit',
+            'delete' => 'Successful delete',
+            'login' => 'Login successful',
+            'successful_registration' => 'Registration successful',
+            'user_exists' => 'User already exists'
+        );
 		$this->is_admin = $is_admin;
 		$this->layout = DX_ROOT_DIR . '/views/layouts/default.php';
 	}

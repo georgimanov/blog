@@ -7,7 +7,7 @@
         </div>
         <div class="col-lg-9 text-right">
             <p>Username: <?php echo $user['username']; ?></p>
-            <p>Email: <?php echo $user['email']; ?></p>
+            <p>Email: <?php echo empty($user['email']) ? "not provided" : $user['email']; ?></p>
         </div>
         <div class="clearfix">
         </div>
