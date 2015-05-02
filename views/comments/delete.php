@@ -9,7 +9,7 @@
             </div>
 
             <i class="alert-info">
-                <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+                <?php echo !empty ($message) ? $message  : "" ; ?>
             </i>
             <div class="col-lg-8 col-lg-offset-2">
                 <form role="form" method="post">

@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use Lib\Verify;
+
 class Comments_Controller extends Master_Controller {
 
     public function __construct() {
@@ -95,31 +97,33 @@ class Comments_Controller extends Master_Controller {
 
         if( ! empty( $_POST['id'] ) &&
             ! empty ($_POST['name']) &&
-            ! empty ($_POST['content']) &&
-            ! empty ($_POST['email']) ) {
+            ! empty ($_POST['content'])
+             ) {
 
             $id = $_POST['id'];
             $name = $_POST['name'];
             $content = $_POST['content'];
             $email = $_POST['email'];
 
-
             $comment = array(
                 'id' => $id,
                 'name' => $name,
                 'content' => $content,
-                'email' => $email
             );
+
+            if( Verify::is_mail_valid( $email ) ){
+                $comment['email'] = $email;
+            } else {
+                $comment['email'] = '';
+            }
 
             $result = $this->model->update( $comment );
 
-
             if($result > 0){
-                $this->message = 'Successfully edited comment';
+                $message = $this->message['successful_edit'];
             } else {
-                $this->message = 'An error has occurred!';
+                $message = $this->message['error'];
             }
-
         }
 
         $element = $element[0];

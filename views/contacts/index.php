@@ -5,6 +5,9 @@
         <div class="col-lg-6 col-lg-offset-3 centered">
             <h3>CONTACT ME</h3>
             <hr>
+            <i class="alert-info">
+                <?php echo !empty ($message) ? $message  : "" ; ?>
+            </i>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
         </div>
     </div>

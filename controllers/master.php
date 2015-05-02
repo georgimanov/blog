@@ -27,7 +27,7 @@ class Master_Controller {
         $this->message = array(
             'error' => 'Something went wrong',
             'success' => 'Success',
-            'edit' => 'Successful edit',
+            'successful_edit' => 'Successful edit',
             'delete' => 'Successful delete',
             'login' => 'Login successful',
             'successful_registration' => 'Registration successful',
@@ -70,11 +70,10 @@ class Master_Controller {
             $result = $this->model->delete( $id );
 
             if($result > 0){
-                $this->message = 'Successfully edited!';
+                $this->message = 'Successfully deleted!';
             } else {
                 $this->message = 'An error has occurred!';
             }
-
         }
 
         $template_name = DX_ROOT_DIR . $this->views_dir . (__FUNCTION__). '.php';

@@ -6,12 +6,11 @@
 
             <div class="col-lg-8 col-lg-offset-2 centered">
                 <h3>Edit Comment <a href="<?php echo DX_URL . 'comments/index';?>" ># back</a> </h3>
-            </div>
-            <div class="row">
                 <i class="alert-info">
-                    <?php echo !empty ($this->message) ? $this->message  : "" ; ?>
+                    <?php echo !empty ($message) ? $message  : "" ; ?>
                 </i>
             </div>
+
             <div class="col-lg-8 col-lg-offset-2">
                 <form role="form" method="post">
                     <div class="form-group">
